@@ -1,0 +1,35 @@
+[project]
+name = "tidyllm-sentence"
+version = "0.1.0"
+description = "Pure Python sentence embeddings - tidyllm verse component for transparent, educational NLP"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = []
+authors = [
+    {name = "Rudy Martin", email = "rudy@nextshiftconsulting.com"}
+]
+license = {text = "CC BY 4.0"}
+keywords = ["sentence embeddings", "nlp", "pure python", "educational", "tidyllm", "numpy-free"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Education",
+    "Topic :: Text Processing :: Linguistic",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "License :: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+
+[project.urls]
+Homepage = "https://github.com/rudymartin/tidyllm-sentence"
+"Bug Reports" = "https://github.com/rudymartin/tidyllm-sentence/issues"
+"Source" = "https://github.com/rudymartin/tidyllm-sentence"
+Repository = "https://github.com/rudymartin/tidyllm-sentence.git"
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
