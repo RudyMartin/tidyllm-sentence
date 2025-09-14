@@ -31,6 +31,65 @@ __version__ = "0.1.0"
 # 
 # The tidyllm-verse: Where algorithmic sovereignty meets research competitiveness
 
+# Compatibility wrapper for sentence-transformers-like API
+class SentenceTransformer:
+    """Compatibility wrapper for sentence-transformers API."""
+
+    def __init__(self, model_name: str = 'all-MiniLM-L6-v2'):
+        self.model_name = model_name
+        self._fitted = False
+        self._vectorizer = None
+
+    def encode(self, sentences, **kwargs):
+        """Encode sentences to embeddings using TF-IDF."""
+        # Handle single string input (convert to list)
+        if isinstance(sentences, str):
+            sentences = [sentences]
+            single_input = True
+        else:
+            single_input = False
+
+        if not self._fitted:
+            # Fit on the input sentences
+            self._vectorizer = tfidf_fit(sentences)
+            self._fitted = True
+
+        # Transform sentences to embeddings (correct argument order)
+        embeddings_list = tfidf_transform(sentences, self._vectorizer)
+
+        # Create numpy-like wrapper for compatibility
+        class NumpyLikeArray:
+            def __init__(self, data):
+                self.data = data
+
+            def __getitem__(self, idx):
+                return NumpyLikeEmbedding(self.data[idx])
+
+            def __len__(self):
+                return len(self.data)
+
+            def tolist(self):
+                return self.data
+
+        class NumpyLikeEmbedding:
+            def __init__(self, embedding):
+                self.embedding = embedding
+
+            def tolist(self):
+                return self.embedding
+
+            def __iter__(self):
+                return iter(self.embedding)
+
+            def __len__(self):
+                return len(self.embedding)
+
+        # Return numpy-like array wrapper
+        if single_input:
+            return NumpyLikeEmbedding(embeddings_list[0])
+        else:
+            return NumpyLikeArray(embeddings_list)
+
 __all__ = [
     # TF-IDF
     'tfidf_fit', 'tfidf_transform', 'tfidf_fit_transform',
@@ -48,4 +107,6 @@ __all__ = [
     'preprocess_for_embeddings', 'PreprocessingPipeline', 
     'STANDARD_PIPELINE', 'MINIMAL_PIPELINE', 'AGGRESSIVE_PIPELINE',
     'simple_stem', 'porter_stem', 'ENGLISH_STOP_WORDS', 'remove_stopwords',
+    # Compatibility
+    'SentenceTransformer',
 ]
