@@ -32,7 +32,7 @@ setup(
     description="Pure Python sentence embeddings - tidyllm verse component for transparent, educational NLP",
     long_description=get_long_description(),
     long_description_content_type="text/markdown",
-    url="https://github.com/rudymartin/tidyllm-sentence",
+    url="https://github.com/organization/tidyllm-sentence",
     packages=find_packages(),
     classifiers=[
         "Development Status :: 3 - Alpha",

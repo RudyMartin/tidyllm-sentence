@@ -2,8 +2,8 @@ Metadata-Version: 2.4
 Name: tidyllm-sentence
 Version: 0.1.0
 Summary: Pure Python sentence embeddings - tidyllm verse component for transparent, educational NLP
-Home-page: https://github.com/marti/qa-shipping
-Author: TidyLLM Team
+Home-page: https://github.com/organization/tidyllm-sentence
+Author: Rudy Martin
 Author-email: Rudy Martin <rudy@nextshiftconsulting.com>
 License: CC BY 4.0
 Project-URL: Homepage, https://github.com/rudymartin/tidyllm-sentence
@@ -22,7 +22,7 @@ Classifier: Programming Language :: Python :: 3.10
 Classifier: Programming Language :: Python :: 3.11
 Classifier: Programming Language :: Python :: 3.12
 Classifier: Programming Language :: Python :: 3.13
-Requires-Python: >=3.8
+Requires-Python: >=3.9
 Description-Content-Type: text/markdown
 License-File: LICENSE
 Dynamic: author
