@@ -1,7 +1,45 @@
+# TidyLLM .gitignore
+# Comprehensive gitignore for Python projects with AI/ML focus
+
+# =============================================================================
+# DATABASE & SECURITY
+# =============================================================================
+
+# Environment files with secrets
+.env
+.env.local
+.env.production
+.env.*
+
+# MLflow files (auto-generated metadata)
+mlruns/
+**/mlruns/
+
+# Parquet files (may contain sensitive data)
+*.parquet
+
+# Settings and configuration files with credentials
+*settings*
+*credentials*
+*secrets*
+
+# Active state files
+*active_state*
+
+# =============================================================================
+# PYTHON
+# =============================================================================
+
+CLAUDE.md
+
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
+.github
+.Rhistory
 
 # C extensions
 *.so
@@ -20,7 +58,6 @@ parts/
 sdist/
 var/
 wheels/
-pip-wheel-metadata/
 share/python-wheels/
 *.egg-info/
 .installed.cfg
@@ -28,8 +65,6 @@ share/python-wheels/
 MANIFEST
 
 # PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
 *.manifest
 *.spec
 
@@ -50,6 +85,7 @@ coverage.xml
 *.py,cover
 .hypothesis/
 .pytest_cache/
+cover/
 
 # Translations
 *.mo
@@ -72,6 +108,7 @@ instance/
 docs/_build/
 
 # PyBuilder
+.pybuilder/
 target/
 
 # Jupyter Notebook
@@ -85,13 +122,15 @@ ipython_config.py
 .python-version
 
 # pipenv
-#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
-#   However, in case of collaboration, if having platform-specific dependencies or dependencies
-#   having no cross-platform support, pipenv may install dependencies that don't work, or not
-#   install all needed dependencies.
-#Pipfile.lock
+Pipfile.lock
 
-# PEP 582; used by e.g. github.com/David-OConnor/pyflow
+# poetry
+poetry.lock
+
+# pdm
+.pdm.toml
+
+# PEP 582
 __pypackages__/
 
 # Celery stuff
@@ -128,50 +167,369 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# IDE/Editor files
-.vscode/
+# pytype static type analyzer
+.pytype/
+
+# Cython debug symbols
+cython_debug/
+
+# =============================================================================
+# IDEs AND EDITORS
+# =============================================================================
+
+# PyCharm
 .idea/
+
+# VS Code
+.vscode/
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
 *.swp
 *.swo
 *~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# =============================================================================
+# OPERATING SYSTEMS
+# =============================================================================
+
+# macOS
 .DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Windows
 Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.tmp
+*.temp
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
 
-# Modern Python tools
-.ruff_cache/
-.benchmarks/
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
 
-# Security/Secrets
-*.pem
-*.key
-.env.*
-secrets/
-*.pfx
-*.p12
+# =============================================================================
+# CACHE AND TEMPORARY FILES
+# =============================================================================
 
-# Docker/Kubernetes
-*.pvc
-docker-compose.override.yml
-.dockerignore
+# Cache directories
+.cache/
+*.cache/
+.bedrock_cache/
+.my_cache/
+.demo_cache/
+.dspy_cache/
+.test_cache/
+.test_cache2/
+.pytest_cache/
+.tox/
+.nox/
+
+# MLFlow tracking
+mlruns/
+mlflow.db
+mlartifacts/
 
 # Temporary files
 *.tmp
-*.bak
+*.temp
 temp/
 tmp/
 
-# Database
+# Backup files
+*.bak
+*.backup
+*.old
+*.orig
+
+# =============================================================================
+# SECURITY AND CREDENTIALS
+# =============================================================================
+
+# Environment files
+.env*
+!.env.example
+!.env.template
+
+# Configuration files with sensitive data
+settings.yaml
+config.yaml
+
+# AWS credentials and configuration
+.aws/
+aws-credentials.json
+aws-config.json
+
+# Database credentials
+database.ini
+db_config.json
+
+# Credentials and secrets
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+secrets.json
+credentials.json
+*.secret
+*.conf
+
+# =============================================================================
+# DATABASES
+# =============================================================================
+
+# Database files
 *.db
 *.sqlite
-*.sqlite3-wal
-*.sqlite3-shm
+*.sqlite3
+*.mdb
+*.accdb
 
-# Extended logs
+# =============================================================================
+# DATA AND MODEL FILES
+# =============================================================================
+
+# TidyLLM specific
+# Model files and weights
+models/
+*.bin
+*.safetensors
+*.ckpt
+*.pth
+
+# Large data files
+data/
+datasets/
+*.csv
+*.json
+*.parquet
+*.h5
+*.hdf5
+
+# =============================================================================
+# MEDIA AND DOCUMENTS
+# =============================================================================
+
+# Media files (usually large)
+*.mp4
+*.avi
+*.mov
+*.wmv
+*.flv
+*.webm
+*.mp3
+*.wav
+*.flac
+*.aac
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.bmp
+*.tiff
+*.svg
+
+# Document files
+*.pdf
+*.doc
+*.docx
+*.xls
+*.xlsx
+*.ppt
+*.pptx
+*.odt
+*.ods
+*.odp
+
+# =============================================================================
+# ARCHIVES AND PACKAGES
+# =============================================================================
+
+# Archive files
+*.zip
+*.tar
+*.gz
+*.bz2
+*.xz
+*.rar
+*.7z
+
+# Large binary files
+*.iso
+*.dmg
+*.exe
+*.msi
+*.deb
+*.rpm
+
+# Package files
+*.jar
+*.war
+*.ear
+*.apk
+*.ipa
+
+# Compiled files
+*.com
+*.class
+*.dll
+*.o
+*.so
+*.dylib
+
+# =============================================================================
+# LOGS AND REPORTS
+# =============================================================================
+
+# Log files
 logs/
-*.log.*
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
 
-# Node/Frontend (if mixed project)
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage reports
+coverage/
+*.lcov
+.nyc_output
+htmlcov/
+
+# =============================================================================
+# WEB DEVELOPMENT (if applicable)
+# =============================================================================
+
+# Node modules (if any)
 node_modules/
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional stylelint cache
+.stylelintcache
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# parcel-bundler cache
+.parcel-cache
+
+# Next.js build output
+.next
+out
+
+# Nuxt.js build / generate output
+.nuxt
+dist
+
+# Gatsby files
+public
+
+# Storybook build outputs
+.out
+.storybook-out
+storybook-static
+
+# =============================================================================
+# LOCK FILES
+# =============================================================================
+
+# Lock files
+*.lock
 package-lock.json
 yarn.lock
-pnpm-lock.yaml
+poetry.lock
+Pipfile.lock
+
+# =============================================================================
+# LOCAL DEVELOPMENT
+# =============================================================================
+
+# Local development files
+local_*
+dev_*
+test_*
+
+# Test files (uncomment if you want to ignore test files)
+# test_*
+# *_test.py
+# *_test.js
+# *_test.ts
+# *.test.*
+# *.spec.*
+
+# Documentation builds
+docs/_build/
+site/
+.next/
+out/
+dist/
+
+# =============================================================================
+# JUPYTER NOTEBOOKS (optional)
+# =============================================================================
+
+# Uncomment the line below if you want to ignore Jupyter notebooks
+# *.ipynb
