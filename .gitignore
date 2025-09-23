@@ -5,6 +5,13 @@
 # DATABASE & SECURITY
 # =============================================================================
 
+# SQLite databases and backups
+data/*.db
+data/*.sqlite
+data/*.sqlite3
+data/backups/*.db*
+data/backups/*.sql
+
 # Environment files with secrets
 .env
 .env.local
@@ -22,17 +29,76 @@ mlruns/
 *settings*
 *credentials*
 *secrets*
+*password*
+*token*
+*auth*
+aws_settings.*
+simple_config.*
+*config.yaml
+*config.yml
+*config.json
+
+# Environment setup scripts
+set_env.*
+*set_env*
+set_aws_env.*
+*set_aws_env*
+
+# Backup files that may contain credentials
+*backup*.yaml
+*backup*.yml
+*backup*.json
+*backup*.parquet
+*.backup
+*.bak
+*.old
+*.orig
+*.save
+
+# AWS and cloud credentials
+.aws/
+aws-credentials.*
+aws-config.*
+*aws_access*
+*aws_secret*
+*aws_key*
+
+# Database configuration
+*db_config*
+*database.ini
+*db_password*
+*db_credentials*
+*db_settings*
+
+# Certificate and key files
+*.pem
+*.key
+*.crt
+*.cert
+*.p12
+*.pfx
+*.jks
+*.keystore
+*.truststore
+
+# Runtime state files
+*state*.json
+*state*.yaml
+runtime_state*
+active_state*
 
 # Active state files
 *active_state*
 
+# Content 
+review
+presentation
+pending
+migrated
+
 # =============================================================================
 # PYTHON
 # =============================================================================
-
-CLAUDE.md
-
-
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -40,9 +106,22 @@ __pycache__/
 *$py.class
 .github
 .Rhistory
-
+old-*
+_*
 # C extensions
 *.so
+
+# Windows special device names (accidentally created)
+nul
+con
+prn
+aux
+com[1-9]
+lpt[1-9]
+
+qaz*
+
+
 
 # Distribution / packaging
 .Python
@@ -528,8 +607,43 @@ out/
 dist/
 
 # =============================================================================
+# CLAUDE CODE ARTIFACTS
+# =============================================================================
+
+# Claude Code session files and artifacts
+**/.claude/
+.claude/
+*.claude
+claude-*
+*claude*.md
+claude_*.json
+claude_*.yaml
+.claude-*
+*claude*
+
+# Claude Code generated files
+**/*claude*
+**/claude_*
+
+# =============================================================================
 # JUPYTER NOTEBOOKS (optional)
 # =============================================================================
 
 # Uncomment the line below if you want to ignore Jupyter notebooks
 # *.ipynb
+
+# ==============================================================================
+# ADDITIONAL PATTERNS
+# ==============================================================================
+
+# Modern Python tools
+.ruff_cache/
+.benchmarks/
+
+# Docker/Kubernetes
+*.pvc
+docker-compose.override.yml
+.dockerignore
+
+# Additional package managers
+pnpm-lock.yaml
