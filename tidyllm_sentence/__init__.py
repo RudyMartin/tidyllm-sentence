@@ -19,8 +19,17 @@ from .transformer.embeddings import transformer_fit, transformer_transform, tran
 from .utils.tokenize import simple_tokenize, word_tokenize, char_ngrams
 from .utils.similarity import cosine_similarity, semantic_search
 from .utils.preprocessing import preprocess_for_embeddings, PreprocessingPipeline, STANDARD_PIPELINE, MINIMAL_PIPELINE, AGGRESSIVE_PIPELINE
-from .utils.stemmer import simple_stem, porter_stem  
+from .utils.stemmer import simple_stem, porter_stem
 from .utils.stopwords import ENGLISH_STOP_WORDS, CORE_STOP_WORDS, remove_stopwords
+
+# Reasoning capabilities (TENSOR LOGIC ADDITION)
+from .reasoning import (
+    analogical_reasoning,
+    case_retrieval,
+    similarity_based_inference,
+    temperature_sweep,
+    multi_query_reasoning,
+)
 
 __version__ = "0.1.0"
 
@@ -94,7 +103,7 @@ __all__ = [
     # TF-IDF
     'tfidf_fit', 'tfidf_transform', 'tfidf_fit_transform',
     # Word averaging
-    'word_avg_fit', 'word_avg_transform', 'word_avg_fit_transform', 
+    'word_avg_fit', 'word_avg_transform', 'word_avg_fit_transform',
     # N-gram
     'ngram_fit', 'ngram_transform', 'ngram_fit_transform',
     # LSA
@@ -104,9 +113,12 @@ __all__ = [
     # Utils
     'simple_tokenize', 'word_tokenize', 'char_ngrams',
     'cosine_similarity', 'semantic_search',
-    'preprocess_for_embeddings', 'PreprocessingPipeline', 
+    'preprocess_for_embeddings', 'PreprocessingPipeline',
     'STANDARD_PIPELINE', 'MINIMAL_PIPELINE', 'AGGRESSIVE_PIPELINE',
     'simple_stem', 'porter_stem', 'ENGLISH_STOP_WORDS', 'remove_stopwords',
+    # Reasoning (TENSOR LOGIC ADDITION)
+    'analogical_reasoning', 'case_retrieval', 'similarity_based_inference',
+    'temperature_sweep', 'multi_query_reasoning',
     # Compatibility
     'SentenceTransformer',
 ]
