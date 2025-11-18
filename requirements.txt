@@ -1,0 +1,8 @@
+# tidyllm-embeddings - Pure Python Sentence Embeddings
+# Core dependencies
+
+tidyllm-puremath>=0.2.0    # Required for transformer embeddings
+
+# Optional: Development dependencies
+# pytest>=6.0
+# pytest-cov

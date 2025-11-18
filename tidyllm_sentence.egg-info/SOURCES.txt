@@ -4,6 +4,7 @@ README.md
 pyproject.toml
 setup.py
 tidyllm_sentence/__init__.py
+tidyllm_sentence/reasoning.py
 tidyllm_sentence.egg-info/PKG-INFO
 tidyllm_sentence.egg-info/SOURCES.txt
 tidyllm_sentence.egg-info/dependency_links.txt
