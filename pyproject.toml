@@ -3,10 +3,8 @@ name = "tidyllm-embeddings"
 version = "0.1.0"
 description = "Pure Python sentence embeddings: TF-IDF, LSA, word averaging, n-gram (NumPy-free)"
 readme = "README.md"
-requires-python = ">=3.9"
-dependencies = [
-    "tidyllm-puremath>=0.2.0",    # Required for transformer embeddings
-]
+requires-python = ">=3.7"
+dependencies = []  # tidyllm-puremath installed separately as local package
 authors = [
     {name = "Rudy Martin", email = "rudy@nextshiftconsulting.com"}
 ]
