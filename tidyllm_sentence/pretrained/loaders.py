@@ -6,6 +6,7 @@ Supports GloVe, FastText, and Word2Vec text formats.
 """
 
 import os
+import warnings
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 import urllib.request
@@ -229,23 +230,36 @@ def _load_text_vectors(
                 if len(parts) == 2:
                     print(f"Header: {parts[0]} words, {parts[1]} dimensions")
 
+        skipped_lines = []
         for i, line in enumerate(f):
             if max_vocab and i >= max_vocab:
                 break
 
             parts = line.rstrip().split(' ')
             if len(parts) < 2:
+                skipped_lines.append((i + 1, "too few parts"))
                 continue
 
             word = parts[0]
             try:
                 vector = [float(x) for x in parts[1:]]
                 vectors[word] = vector
-            except ValueError:
+            except ValueError as e:
+                skipped_lines.append((i + 1, f"parse error: {e}"))
                 continue
 
             if verbose and (i + 1) % 100000 == 0:
                 print(f"Loaded {i + 1} vectors...")
+
+        # Warn if significant number of lines skipped
+        if skipped_lines:
+            skip_rate = len(skipped_lines) / max(i + 1, 1) * 100
+            if skip_rate > 1.0 or verbose:
+                warnings.warn(
+                    f"Skipped {len(skipped_lines)} malformed lines ({skip_rate:.1f}%) "
+                    f"in {path}. First few: {skipped_lines[:3]}",
+                    UserWarning,
+                )
 
     if verbose:
         dim = len(next(iter(vectors.values()))) if vectors else 0
