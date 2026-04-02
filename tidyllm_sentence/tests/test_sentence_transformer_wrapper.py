@@ -33,11 +33,13 @@ class TestSentenceTransformerWrapper:
         model = tls.SentenceTransformer('all-MiniLM-L6-v2')
         embeddings = model.encode(['hello world'])
 
-        assert isinstance(embeddings, list)
+        # Accept list or NumpyLikeArray (has tolist() method)
+        assert hasattr(embeddings, '__len__') or isinstance(embeddings, list)
         assert len(embeddings) == 1
-        assert isinstance(embeddings[0], list)
-        assert len(embeddings[0]) > 0  # Has dimensions
-        print(f"✅ Single sentence encoded to {len(embeddings[0])} dimensions")
+        emb = embeddings[0].tolist() if hasattr(embeddings[0], 'tolist') else embeddings[0]
+        assert isinstance(emb, list)
+        assert len(emb) > 0  # Has dimensions
+        print(f"✅ Single sentence encoded to {len(emb)} dimensions")
 
     def test_multiple_sentence_encoding(self):
         """Test encoding multiple sentences."""
@@ -45,10 +47,11 @@ class TestSentenceTransformerWrapper:
         sentences = ['hello world', 'how are you', 'machine learning']
         embeddings = model.encode(sentences)
 
-        assert isinstance(embeddings, list)
+        # Accept list or NumpyLikeArray
+        assert hasattr(embeddings, '__len__') or isinstance(embeddings, list)
         assert len(embeddings) == 3
         # All embeddings should have same dimensionality
-        dims = [len(emb) for emb in embeddings]
+        dims = [len(emb.tolist() if hasattr(emb, 'tolist') else emb) for emb in embeddings]
         assert all(d == dims[0] for d in dims)
         print(f"✅ Multiple sentences encoded consistently to {dims[0]} dimensions")
 
@@ -108,8 +111,10 @@ class TestSentenceTransformerWrapper:
         embeddings = model.encode(queries)
 
         assert len(embeddings) == 3
-        assert all(isinstance(emb, list) for emb in embeddings)
-        assert all(len(emb) > 0 for emb in embeddings)
+        # Accept list or NumpyLikeArray elements (have tolist() or are lists)
+        for emb in embeddings:
+            emb_list = emb.tolist() if hasattr(emb, 'tolist') else emb
+            assert isinstance(emb_list, list) and len(emb_list) > 0
 
         print(f"✅ Domain adapter pattern works - {len(embeddings)} queries encoded")
 
