@@ -137,6 +137,9 @@ class SentenceTransformer:
         'multi-qa-MiniLM-L6-cos-v1': 384,
     }
 
+    # Valid embedding methods
+    VALID_METHODS = {'lsa', 'sif', 'power_mean', 'tfidf'}
+
     def __init__(
         self,
         model_name: str = 'all-MiniLM-L6-v2',
@@ -150,12 +153,24 @@ class SentenceTransformer:
             model_name: Model name for API compatibility (determines default dim)
             embedding_dim: Override output dimension (default: from model_name or 384)
             method: Embedding method - 'lsa', 'sif', 'power_mean', 'tfidf'
+
+        Raises:
+            ValueError: If method is invalid or embedding_dim is not positive
         """
+        # Validate method
+        if method not in self.VALID_METHODS:
+            raise ValueError(
+                f"Invalid method '{method}'. "
+                f"Must be one of: {', '.join(sorted(self.VALID_METHODS))}"
+            )
+
         self.model_name = model_name
         self.method = method
 
-        # Determine embedding dimension
+        # Determine and validate embedding dimension
         if embedding_dim is not None:
+            if embedding_dim < 1:
+                raise ValueError(f"embedding_dim must be positive, got {embedding_dim}")
             self._dim = embedding_dim
         else:
             self._dim = self.MODEL_DIMENSIONS.get(model_name, 384)
