@@ -1,7 +1,7 @@
 Metadata-Version: 2.4
 Name: tidyllm-sentence
 Version: 0.1.0
-Summary: Pure Python sentence embeddings - tidyllm verse component for transparent, educational NLP
+Summary: Pure Python sentence embeddings: TF-IDF, LSA, word averaging, n-gram (NumPy-free)
 Home-page: https://github.com/organization/tidyllm-sentence
 Author: Rudy Martin
 Author-email: Rudy Martin <rudy@nextshiftconsulting.com>

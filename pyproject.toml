@@ -1,5 +1,5 @@
 [project]
-name = "tidyllm-embeddings"
+name = "tidyllm-sentence"
 version = "0.1.0"
 description = "Pure Python sentence embeddings: TF-IDF, LSA, word averaging, n-gram (NumPy-free)"
 readme = "README.md"
